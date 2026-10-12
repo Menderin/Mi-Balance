@@ -13,9 +13,9 @@ npm ci
 npm run check
 ```
 
-El workflow `.github/workflows/ci.yml` se ejecuta en pushes a main, feat/** y feature/**, en pull requests hacia `main` y manualmente desde Actions. Instala las dependencias del lockfile, comprueba formato con Prettier y valida los tipos de `neon.ts` con TypeScript. No requiere secretos ni se conecta a Neon.
+El workflow `.github/workflows/ci.yml` se ejecuta en pushes a main, feat/** y feature/**, en pull requests hacia `main` y manualmente desde Actions. Instala las dependencias del lockfile y comprueba formato, tipos, pruebas de salud y builds. Después construye y levanta los contenedores, y ejecuta pruebas de comunicación, migraciones, persistencia y recuperación. No requiere secretos ni se conecta a Neon.
 
-Todavía no existen tests de aplicación ni builds de frontend/API. Se añadirán al check `CI` cuando implementemos la base ejecutable y las funciones. No se despliega a Azure en esta etapa.
+El check `CI` cubre la base ejecutable. Las pruebas de autenticación y movimientos se añadirán con esas funciones. No se despliega a Azure en esta etapa.
 
 Después de subir el workflow y completar su primera ejecución correctamente, seleccionar `CI` como required status check en la protección de `main` y activar la exigencia de ramas actualizadas. Mantener obligatorio el pull request.
 
@@ -56,7 +56,53 @@ neon config status --project-id raspy-firefly-35762819 --branch main
 
 ### Desarrollo local
 
-La base local de desarrollo seguirá siendo PostgreSQL en Docker cuando se implemente la base ejecutable. La conexión de `main` en `.env.local` no debe cargarse automáticamente en la aplicación local ni en las pruebas. No ejecutar migraciones o pruebas contra producción.
+La conexión de Neon `main` en `.env.local` no se carga en Compose, la aplicación o las pruebas. No ejecutar migraciones o pruebas contra producción.
+
+## Ejecutar la base local
+
+Podman es el motor local; GitHub Actions conserva Docker. Ambos utilizan los mismos Dockerfiles y `compose.yml`. Nginx obtiene el DNS desde `/etc/resolv.conf`, sin depender de una dirección específica del motor.
+
+Si la máquina de Podman está detenida, iniciarla con `podman machine start`. `podman compose version` permite comprobar el proveedor de Compose. Docker Compose puede funcionar como proveedor de Podman sin iniciar Docker Desktop. No desinstalar el proveedor sin instalar un reemplazo.
+
+Para las pruebas, `npm run test:smoke -- podman` selecciona Podman; sin argumento utiliza Docker, como en CI.
+
+Requisitos: Podman con su máquina activa y un proveedor de Compose instalado (el equipo actual utiliza Docker Compose como proveedor, sin necesitar el motor de Docker Desktop). Node.js 24 solo es necesario para ejecutar comandos npm fuera de los contenedores.
+
+```powershell
+podman compose up --build -d --wait
+```
+
+Abrir http://localhost:8080. El navegador recibe React desde Nginx; Nginx dirige `/api` al contenedor `api`; la API consulta `db`. Solo la web publica un puerto, limitado al equipo local. API y PostgreSQL se comunican por la red interna de Compose.
+
+```powershell
+podman compose ps
+podman compose logs --tail 50
+podman compose run --rm api npm run migrate --workspace @mi-balance/api
+```
+
+Las migraciones SQL se guardan en `apps/api/migrations`. El ejecutor crea únicamente la tabla técnica `schema_migrations`, registra checksums y aplica los archivos pendientes en una transacción. Todavía no existen tablas de negocio.
+
+`GET /api/health/live` confirma que responde la API. `GET /api/health/ready` comprueba PostgreSQL y devuelve 503 cuando no está disponible, sin revelar errores internos.
+
+Con los contenedores activos, ejecutar la verificación completa:
+
+```powershell
+npm ci
+npm run check
+npm run test:smoke -- podman
+```
+
+La prueba smoke recrea el contenedor de PostgreSQL, comprueba persistencia, lo detiene para verificar el 503 y lo vuelve a levantar. Utilizarla exclusivamente en esta base local de desarrollo.
+
+```powershell
+podman compose down
+```
+
+Este comando retira los contenedores y conserva el volumen `postgres_data`. `podman compose down -v` borra los datos locales; usarlo únicamente para un reinicio deliberado.
+
+Los Dockerfiles usan varias etapas: compilan con herramientas de desarrollo y entregan imágenes de ejecución. La API se ejecuta con el usuario `node`. `.dockerignore` excluye credenciales y archivos locales del contexto de construcción. PostgreSQL 18 guarda sus datos bajo `/var/lib/postgresql`, donde se monta el volumen.
+
+La contraseña de Compose es un valor de ejemplo exclusivo del entorno local aislado, no una credencial de producción. Cambiar imágenes, código o configuración requiere reconstruir con `podman compose up --build -d --wait`. No copiar `.env.local` a ninguna imagen.
 
 ## Flujo de ramas
 

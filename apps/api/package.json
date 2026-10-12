@@ -1,0 +1,20 @@
+{
+  "name": "@mi-balance/api",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "dev": "node --watch --experimental-strip-types src/server.ts",
+    "start": "node dist/server.js",
+    "test": "node --experimental-strip-types --test src/app.test.ts",
+    "migrate": "node dist/migrate.js"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.23.1"
+  },
+  "dependencies": {
+    "fastify": "^5.12.5",
+    "pg": "^8.23.1"
+  }
+}

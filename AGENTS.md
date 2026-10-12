@@ -33,7 +33,7 @@ No presentar funciones futuras como implementadas. Mantener el estado de cada mi
 - Aplicar las reglas de saldo, transferencias y compromisos de `Agents/SSD.md`.
 - Autenticar y autorizar en la API; toda lectura o escritura de datos personales debe comprobar el propietario.
 - Nunca versionar, imprimir ni incluir en ejemplos credenciales reales. Usar ejemplos sin secretos y archivos de entorno excluidos de Git.
-- PostgreSQL local en Docker es la base de desarrollo y pruebas. No cargar automáticamente la `.env.local` de Neon en la app local, pruebas o CI.
+- PostgreSQL local con Podman (Docker en CI) es la base de desarrollo y pruebas. No cargar automáticamente la `.env.local` de Neon en la app local, pruebas o CI.
 - Neon `main` es la rama principal remota. No ejecutar pruebas, seeds ni migraciones experimentales contra ella. Los cambios de producción requieren el flujo de despliegue autorizado.
 - Las skills instaladas de Neon complementan el trabajo; no sustituyen las decisiones acordadas sobre Azure, backend propio y PostgreSQL local.
 - Antes de aplicar configuración Neon, revisar el plan y conservar la configuración existente. No habilitar servicios adicionales por defecto.

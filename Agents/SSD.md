@@ -29,15 +29,17 @@ Mantener la aplicación portable: PostgreSQL estándar, contenedores ejecutables
 
 ## 3. Estado actual y primera entrega
 
-Actualmente existen la configuración de Neon, esta documentación y un workflow inicial de CI. Todavía no existen aplicaciones, Docker Compose, autenticación, tablas de negocio ni despliegue automatizado.
+Actualmente existen la configuración de Neon, React, la API Fastify, migraciones, Dockerfiles, Docker Compose y CI. Todavía no existen autenticación, tablas de negocio ni despliegue automatizado.
 
-El workflow `.github/workflows/ci.yml` ejecuta `npm ci` y `npm run check` en pushes a main, feat/** y feature/**, pull requests hacia `main` y ejecuciones manuales. El check se llama `CI` y comprueba formato y tipos de la configuración actual, sin credenciales ni acceso a Neon. Al implementar M0, se ampliará con lint de código, pruebas pertinentes y builds de aplicaciones e imágenes; no considerar la verificación inicial como prueba funcional del producto.
+El workflow `.github/workflows/ci.yml` ejecuta `npm ci` y `npm run check` en pushes a main, feat/** y feature/**, pull requests hacia `main` y ejecuciones manuales. El check `CI` valida formato, tipos, pruebas de salud y builds; construye las imágenes y ejecuta una prueba de integración con los tres contenedores. Comprueba comunicación por Nginx, migraciones repetibles, persistencia al recrear PostgreSQL y recuperación de readiness. No utiliza credenciales ni acceso a Neon. El lint inicial comprueba formato; se ampliará con reglas de análisis de código cuando sea necesario.
 
 Proyecto Neon: `Mi Balance`, identificador `raspy-firefly-35762819`. La rama principal y predeterminada es `main`; antes se llamaba `production` y se renombró conservando su identidad y datos. `neon.ts` contiene `defineConfig({})`; solo se utiliza PostgreSQL. La vinculación `.neon` y las conexiones de `.env.local` están excluidas de Git.
 
-### Milestone M0 — Base ejecutable (pendiente)
+### Milestone M0 — Base ejecutable (implementada y verificada localmente con Podman)
 
-Entregar frontend mínimo, API y PostgreSQL local en Docker; todavía no implementar funciones de v0.1.
+Formato, tipos, tres pruebas de salud y builds de ambas aplicaciones pasan localmente. Podman construye y levanta los tres servicios. La prueba de integración verifica web, proxy, PostgreSQL, migraciones repetibles, persistencia al recrear el contenedor y recuperación tras detener la base. Nginx utiliza el DNS del contenedor para funcionar con ambos motores. CI conserva Docker; su ejecución remota requiere subir los cambios a GitHub. Docker Desktop local no se utiliza.
+
+Entregar frontend mínimo, API y PostgreSQL local con Podman (Docker en CI); todavía no implementar funciones de v0.1.
 
 - Crear npm workspaces, configuración TypeScript estricta, lint, variables de ejemplo, Dockerfiles y Docker Compose.
 - Mostrar una pantalla mínima de Mi Balance que consulte la API y comunique éxito o indisponibilidad.
@@ -126,7 +128,7 @@ Mantener la API independiente y la web adaptable a móvil para facilitar esa evo
 
 ## 6. Infraestructura, pruebas y entrega
 
-Desarrollo y pruebas utilizan PostgreSQL local en Docker. Neon `main` queda reservado para la base principal remota; las ramas de Git no se sincronizan automáticamente con Neon. El merge integra código; las migraciones versionadas actualizan el esquema.
+Desarrollo y pruebas utilizan PostgreSQL local con Podman (Docker en CI). Neon `main` queda reservado para la base principal remota; las ramas de Git no se sincronizan automáticamente con Neon. El merge integra código; las migraciones versionadas actualizan el esquema.
 
 Al preparar el despliegue, cerrar región de Azure, registro de imágenes, proveedor de correo, procedimiento de migraciones y recuperación, y estimación de costos. No provisionar recursos por anticipación. Container Apps utilizará inicialmente Consumption, mínimo cero y máximo una réplica por aplicación; admitir arranque en frío. Considerar también costos de logs, registro y tráfico.
 

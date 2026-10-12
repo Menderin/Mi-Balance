@@ -1,13 +1,19 @@
 {
   "name": "mi-balance",
   "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
   "engines": {
     "node": ">=24 <25"
   },
   "scripts": {
-    "lint": "prettier --check README.md AGENTS.md Agents/SSD.md package.json package-lock.json tsconfig.json neon.ts .github/workflows/ci.yml",
-    "typecheck": "tsc --noEmit",
-    "check": "npm run lint && npm run typecheck"
+    "test:smoke": "node scripts/smoke.mjs",
+    "lint": "prettier --check .",
+    "typecheck": "tsc --noEmit && npm run typecheck --workspaces",
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspace @mi-balance/api",
+    "check": "npm run lint && npm run typecheck && npm test && npm run build"
   },
   "dependencies": {
     "@neon/config": "^1.8.6",

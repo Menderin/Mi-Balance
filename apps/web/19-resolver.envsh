@@ -1,0 +1,4 @@
+#!/bin/sh
+# Use the DNS provided by the container engine (Docker or Podman).
+export DNS_RESOLVER="$(awk '$1 == "nameserver" { print $2; exit }' /etc/resolv.conf)"
+test -n "$DNS_RESOLVER"
