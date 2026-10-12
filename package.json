@@ -1,0 +1,21 @@
+{
+  "name": "mi-balance",
+  "private": true,
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "lint": "prettier --check README.md AGENTS.md Agents/SSD.md package.json package-lock.json tsconfig.json neon.ts .github/workflows/ci.yml",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run lint && npm run typecheck"
+  },
+  "dependencies": {
+    "@neon/config": "^1.8.6",
+    "@neon/env": "^1.5.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "prettier": "^3.9.10",
+    "typescript": "^7.0.2"
+  }
+}
