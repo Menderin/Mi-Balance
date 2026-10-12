@@ -20,6 +20,10 @@ services:
     environment:
       DATABASE_URL: postgresql://mi_balance:local_development_only@db:5432/mi_balance
       PORT: "3000"
+      APP_ORIGIN: http://localhost:8080
+      AUTH_SECRET: local-development-only-secret-do-not-use-in-production
+      SMTP_HOST: mail
+      SMTP_PORT: "1025"
     depends_on:
       db:
         condition: service_healthy
@@ -43,5 +47,10 @@ services:
     depends_on:
       api:
         condition: service_healthy
+  mail:
+    image: docker.io/axllent/mailpit:v1.29.2
+    profiles: [mail]
+    ports:
+      - "127.0.0.1:8025:8025"
 volumes:
   postgres_data:

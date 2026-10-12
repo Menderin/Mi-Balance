@@ -13,13 +13,15 @@
     "typecheck": "tsc --noEmit && npm run typecheck --workspaces",
     "build": "npm run build --workspaces",
     "test": "npm run test --workspace @mi-balance/api",
-    "check": "npm run lint && npm run typecheck && npm test && npm run build"
+    "check": "npm run lint && npm run typecheck && npm test && npm run build",
+    "test:ui": "playwright test"
   },
   "dependencies": {
     "@neon/config": "^1.8.6",
     "@neon/env": "^1.5.3"
   },
   "devDependencies": {
+    "@playwright/test": "^1.64.0",
     "@types/node": "^26.6.5",
     "prettier": "^3.9.10",
     "typescript": "^7.0.2"

@@ -3,18 +3,24 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "test:schema": "node dist/schema.integration.js",
     "build": "tsc",
     "typecheck": "tsc --noEmit",
     "dev": "node --watch --experimental-strip-types src/server.ts",
     "start": "node dist/server.js",
     "test": "node --experimental-strip-types --test src/app.test.ts",
-    "migrate": "node dist/migrate.js"
+    "migrate": "node dist/migrate.js",
+    "test:auth": "node dist/auth.integration.js",
+    "create:dev-user": "node dist/create-dev-user.js"
   },
   "devDependencies": {
+    "@types/nodemailer": "^8.0.2",
     "@types/pg": "^8.23.1"
   },
   "dependencies": {
+    "better-auth": "1.7.7",
     "fastify": "^5.12.5",
+    "nodemailer": "^10.1.0",
     "pg": "^8.23.1"
   }
 }

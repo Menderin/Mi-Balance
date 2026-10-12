@@ -5,3 +5,10 @@ skills-lock.json
 package-lock.json
 .env*
 .neon
+test-results
+playwright-report
+apps/web/.impeccable/review
+apps/web/.impeccable/questions
+apps/web/.impeccable/mocks
+# Archivos de agentes instalados por Impeccable, conservados tal como vienen.
+.github/agents/impeccable-*.agent.md

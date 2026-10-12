@@ -1,0 +1,73 @@
+@font-face {
+  font-family: "Nunito Sans";
+  src: url("/fonts/nunito-sans.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Libre Baskerville";
+  src: url("/fonts/libre-baskerville-italic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 400 700;
+  font-display: swap;
+}
+:root {
+  --color-blue-marguerite-50: #f0f3fd;
+  --color-blue-marguerite-100: #e4e8fb;
+  --color-blue-marguerite-200: #cdd4f8;
+  --color-blue-marguerite-300: #afb8f2;
+  --color-blue-marguerite-400: #8f94ea;
+  --color-blue-marguerite-500: #6664dd;
+  --color-blue-marguerite-600: #6459d2;
+  --color-blue-marguerite-700: #5649b9;
+  --color-blue-marguerite-800: #463d96;
+  --color-blue-marguerite-900: #3d3877;
+  --color-blue-marguerite-950: #252145;
+  --font-family: "Nunito Sans", system-ui, sans-serif;
+  --font-display: "Libre Baskerville", Georgia, serif;
+  --radius-panel: 16px;
+  --radius-control: 10px;
+  --illustration-ink: #292b36;
+  --illustration-paper: #fafaf7;
+  --color-error: #932f3d;
+  --color-error-surface: #fff0f2;
+  --color-success: #235a43;
+  --color-success-surface: #eef7f0;
+}
+[data-theme="violet"] {
+  --page: var(--color-blue-marguerite-50);
+  --scene: var(--color-blue-marguerite-100);
+  --accent: var(--color-blue-marguerite-700);
+  --accent-hover: var(--color-blue-marguerite-800);
+  --accent-soft: var(--color-blue-marguerite-300);
+  --ink: var(--color-blue-marguerite-950);
+  --muted: var(--color-blue-marguerite-900);
+  --field: #f7f8fd;
+  --field-border: #afb8d7;
+  --illustration-shadow: #cdd4f8;
+}
+[data-theme="peach"] {
+  --page: #fff4ed;
+  --scene: #fce7d9;
+  --accent: #a3482d;
+  --accent-hover: #843620;
+  --accent-soft: #edb69a;
+  --ink: #422b28;
+  --muted: #755047;
+  --field: #fcf8f5;
+  --field-border: #c8b0a3;
+  --illustration-shadow: #efd3c1;
+}
+[data-theme="aqua"] {
+  --page: #edf8f6;
+  --scene: #dcf0ec;
+  --accent: #246c62;
+  --accent-hover: #195449;
+  --accent-soft: #9ccdc3;
+  --ink: #213b39;
+  --muted: #426964;
+  --field: #f4faf8;
+  --field-border: #a0beb7;
+  --illustration-shadow: #c4e2db;
+}

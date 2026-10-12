@@ -47,6 +47,26 @@ compose(
   "api",
   "npm",
   "run",
+  "test:auth",
+  "--workspace",
+  "@mi-balance/api",
+);
+compose(
+  "run",
+  "--rm",
+  "api",
+  "npm",
+  "run",
+  "test:schema",
+  "--workspace",
+  "@mi-balance/api",
+);
+compose(
+  "run",
+  "--rm",
+  "api",
+  "npm",
+  "run",
   "migrate",
   "--workspace",
   "@mi-balance/api",
@@ -64,6 +84,7 @@ compose(
 sql(
   "INSERT INTO schema_migrations(name, checksum) VALUES ('__m0_probe', 'probe') ON CONFLICT DO NOTHING",
 );
+await expectStatus("/api/me", 401);
 try {
   compose("up", "-d", "--force-recreate", "--wait", "db");
   assert.equal(

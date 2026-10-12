@@ -7,3 +7,8 @@ node_modules
 .env.*
 .neon
 *.log
+**/.impeccable
+test-results
+playwright-report
+.codex
+.github

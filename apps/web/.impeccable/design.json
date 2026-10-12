@@ -1,0 +1,380 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-12T22:07:40.240Z",
+  "title": "Design System: Mi Balance",
+  "extensions": {
+    "colorMeta": {
+      "blue-marguerite-50": {
+        "role": "primary",
+        "displayName": "blue marguerite 50"
+      },
+      "blue-marguerite-100": {
+        "role": "primary",
+        "displayName": "blue marguerite 100"
+      },
+      "blue-marguerite-200": {
+        "role": "primary",
+        "displayName": "blue marguerite 200"
+      },
+      "blue-marguerite-300": {
+        "role": "primary",
+        "displayName": "blue marguerite 300"
+      },
+      "blue-marguerite-400": {
+        "role": "primary",
+        "displayName": "blue marguerite 400"
+      },
+      "blue-marguerite-500": {
+        "role": "primary",
+        "displayName": "blue marguerite 500"
+      },
+      "blue-marguerite-600": {
+        "role": "primary",
+        "displayName": "blue marguerite 600"
+      },
+      "blue-marguerite-700": {
+        "role": "primary",
+        "displayName": "blue marguerite 700",
+        "tonalRamp": [
+          "#252145",
+          "#3d3877",
+          "#463d96",
+          "#5649b9",
+          "#6459d2",
+          "#6664dd",
+          "#8f94ea",
+          "#afb8f2",
+          "#cdd4f8",
+          "#e4e8fb",
+          "#f0f3fd"
+        ]
+      },
+      "blue-marguerite-800": {
+        "role": "primary",
+        "displayName": "blue marguerite 800"
+      },
+      "blue-marguerite-900": {
+        "role": "primary",
+        "displayName": "blue marguerite 900"
+      },
+      "blue-marguerite-950": {
+        "role": "primary",
+        "displayName": "blue marguerite 950"
+      },
+      "violet-field": {
+        "role": "neutral",
+        "displayName": "violet field"
+      },
+      "violet-field-border": {
+        "role": "neutral",
+        "displayName": "violet field border"
+      },
+      "peach-page": {
+        "role": "secondary",
+        "displayName": "peach page"
+      },
+      "peach-scene": {
+        "role": "secondary",
+        "displayName": "peach scene"
+      },
+      "peach-accent": {
+        "role": "secondary",
+        "displayName": "peach accent"
+      },
+      "peach-accent-hover": {
+        "role": "secondary",
+        "displayName": "peach accent hover"
+      },
+      "peach-accent-soft": {
+        "role": "secondary",
+        "displayName": "peach accent soft"
+      },
+      "peach-ink": {
+        "role": "secondary",
+        "displayName": "peach ink"
+      },
+      "peach-muted": {
+        "role": "secondary",
+        "displayName": "peach muted"
+      },
+      "peach-field": {
+        "role": "secondary",
+        "displayName": "peach field"
+      },
+      "peach-field-border": {
+        "role": "secondary",
+        "displayName": "peach field border"
+      },
+      "peach-illustration-shadow": {
+        "role": "secondary",
+        "displayName": "peach illustration shadow"
+      },
+      "aqua-page": {
+        "role": "tertiary",
+        "displayName": "aqua page"
+      },
+      "aqua-scene": {
+        "role": "tertiary",
+        "displayName": "aqua scene"
+      },
+      "aqua-accent": {
+        "role": "tertiary",
+        "displayName": "aqua accent"
+      },
+      "aqua-accent-hover": {
+        "role": "tertiary",
+        "displayName": "aqua accent hover"
+      },
+      "aqua-accent-soft": {
+        "role": "tertiary",
+        "displayName": "aqua accent soft"
+      },
+      "aqua-ink": {
+        "role": "tertiary",
+        "displayName": "aqua ink"
+      },
+      "aqua-muted": {
+        "role": "tertiary",
+        "displayName": "aqua muted"
+      },
+      "aqua-field": {
+        "role": "tertiary",
+        "displayName": "aqua field"
+      },
+      "aqua-field-border": {
+        "role": "tertiary",
+        "displayName": "aqua field border"
+      },
+      "aqua-illustration-shadow": {
+        "role": "tertiary",
+        "displayName": "aqua illustration shadow"
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "white"
+      },
+      "illustration-ink": {
+        "role": "neutral",
+        "displayName": "illustration ink"
+      },
+      "illustration-paper": {
+        "role": "neutral",
+        "displayName": "illustration paper"
+      },
+      "error": {
+        "role": "neutral",
+        "displayName": "error"
+      },
+      "error-surface": {
+        "role": "neutral",
+        "displayName": "error surface"
+      },
+      "success": {
+        "role": "neutral",
+        "displayName": "success"
+      },
+      "success-surface": {
+        "role": "neutral",
+        "displayName": "success surface"
+      }
+    },
+    "typographyMeta": {
+      "headline": {
+        "displayName": "Título principal",
+        "purpose": "Libre Baskerville Italic; título adaptable del acceso."
+      },
+      "headline-mobile": {
+        "displayName": "Título móvil",
+        "purpose": "Título serif cursivo de 26px bajo 760px."
+      },
+      "brand": {
+        "displayName": "Marca",
+        "purpose": "Nombre Mi Balance en Libre Baskerville Italic."
+      },
+      "brand-mobile": {
+        "displayName": "Marca móvil",
+        "purpose": "Nombre Mi Balance de 18px bajo 760px."
+      },
+      "body": {
+        "displayName": "Cuerpo",
+        "purpose": "Nunito Sans en instrucciones; recuperación y mensajes usan 14px."
+      },
+      "label": {
+        "displayName": "Etiqueta",
+        "purpose": "Nombre visible de los campos en Nunito Sans."
+      },
+      "navigation": {
+        "displayName": "Navegación",
+        "purpose": "Regreso al inicio: Nunito Sans de 13px, peso 700, estilo normal."
+      },
+      "invitation-note": {
+        "displayName": "Nota de invitación",
+        "purpose": "Acceso por invitación, 13px en Nunito Sans."
+      }
+    },
+    "shadows": [
+      {
+        "name": "panel-ambient",
+        "value": "0 12px 32px #292b3610",
+        "purpose": "Separación sutil entre el panel blanco compartido y el marco exterior del tema."
+      }
+    ],
+    "motion": [
+      {
+        "name": "balance-entry",
+        "value": "balance-sway 4s cubic-bezier(0.16, 1, 0.3, 1) both",
+        "purpose": "Una oscilación de entrada de la viga: −8°, 4°, −2°, 0°; queda quieta a los cuatro segundos y da paso al pulso de detalles."
+      },
+      {
+        "name": "balance-details-pulse",
+        "value": "balance-pulse 900ms cubic-bezier(0.16, 1, 0.3, 1) 4s both",
+        "purpose": "Un pulso de detalles tras el balanceo; opacidad 0.22→0.5→0.22 y escala 1→1.035→1. Reposo final a los 4.9 segundos."
+      },
+      {
+        "name": "control-transition",
+        "value": "160ms ease",
+        "purpose": "Fondo y borde de los controles."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "none",
+        "purpose": "Desactiva ambas animaciones y transiciones; viga horizontal y detalles con opacidad 0.22 y escala 1 desde el inicio."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact-desktop",
+        "value": "(max-width: 900px) and (min-width: 760px)"
+      },
+      {
+        "name": "mobile",
+        "value": "(max-width: 759px)"
+      },
+      {
+        "name": "narrow-mobile",
+        "value": "(max-width: 359px)"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Acción principal",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Acción principal del formulario; ambiente violeta como alternativa si no se heredan variables.",
+      "html": "<button type=\"button\" class=\"ds-primary\">Iniciar sesión</button>",
+      "css": ".ds-primary{font-family:var(--font-family,'Nunito Sans',system-ui,sans-serif);background:var(--accent,#5649b9);color:white;min-height:44px;padding:9px 18px;border:0;border-radius:var(--radius-control,10px);font-weight:700;cursor:pointer;transition:background 160ms ease}.ds-primary:hover:not(:disabled){background:var(--accent-hover,#463d96)}.ds-primary:focus-visible{outline:2px solid var(--accent,#5649b9);outline-offset:3px;}.ds-primary:disabled{opacity:.6;cursor:wait}@media(prefers-reduced-motion:reduce){.ds-primary{transition:none}}"
+    },
+    {
+      "name": "Acción textual",
+      "kind": "button",
+      "refersTo": "button-text",
+      "description": "Recuperación y regreso, subordinados a la acción principal.",
+      "html": "<button type=\"button\" class=\"ds-text\">Volver al inicio de sesión</button>",
+      "css": ".ds-text{font-family:var(--font-family,'Nunito Sans',system-ui,sans-serif);background:none;color:var(--accent,#5649b9);border:0;padding:0;border-radius:2px;font-weight:700;text-decoration:underline;text-underline-offset:3px;cursor:pointer;transition:background 160ms ease}.ds-text:hover:not(:disabled){color:var(--accent-hover,#463d96)}.ds-text:focus-visible{outline:2px solid var(--accent,#5649b9);outline-offset:3px;}.ds-text:disabled{opacity:.6;cursor:wait}@media(prefers-reduced-motion:reduce){.ds-text{transition:none}}"
+    },
+    {
+      "name": "Campo de correo",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Etiqueta permanente y campo claro con foco visible.",
+      "html": "<label class=\"ds-label\" for=\"ds-email\">Correo electrónico<input class=\"ds-input\" id=\"ds-email\" name=\"email\" type=\"email\" autocomplete=\"email\" required></label>",
+      "css": ".ds-label{font-family:var(--font-family,'Nunito Sans',system-ui,sans-serif);display:grid;gap:8px;color:var(--ink,#252145);font-size:14px;font-weight:700}.ds-input{box-sizing:border-box;font-family:var(--font-family,'Nunito Sans',system-ui,sans-serif);width:100%;min-width:0;height:44px;padding:9px 14px;border:1px solid var(--field-border,#afb8d7);border-radius:var(--radius-control,10px);color:var(--ink,#252145);caret-color:var(--accent,#5649b9);background:var(--field,#f7f8fd);transition:border-color 160ms ease,background 160ms ease}.ds-input:hover:not(:disabled){border-color:var(--accent,#5649b9)}.ds-input:focus{background:white}.ds-input:focus-visible{outline:2px solid var(--accent,#5649b9);outline-offset:3px;}.ds-input:disabled{cursor:wait}.ds-input:autofill{box-shadow:0 0 0 100px var(--field,#f7f8fd) inset}@media(prefers-reduced-motion:reduce){.ds-input{transition:none}}"
+    },
+    {
+      "name": "Visibilidad de contraseña",
+      "kind": "button",
+      "refersTo": "button-visibility",
+      "description": "Control de ojo SVG de 44 × 44px, alineado arriba y a 4px del borde derecho del campo. React gestiona su estado independiente.",
+      "html": "<div class=\"ds-password-control\"><button class=\"ds-visibility\" type=\"button\" aria-label=\"Mostrar contraseña\" aria-pressed=\"false\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M2 12s3.5-6.5 10-6.5S22 12 22 12s-3.5 6.5-10 6.5S2 12 2 12Z\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/></svg></button></div>",
+      "css": ".ds-password-control{position:relative;height:44px}.ds-visibility{box-sizing:border-box;position:absolute;top:0;right:4px;font-family:var(--font-family,'Nunito Sans',system-ui,sans-serif);width:44px;min-height:44px;padding:10px;background:transparent;color:var(--muted,#3d3877);border:0;border-radius:8px;cursor:pointer;transition:background 160ms ease}.ds-visibility svg{display:block;width:24px;height:24px}.ds-visibility:hover:not(:disabled){background:var(--scene,#e4e8fb);color:var(--accent,#5649b9)}.ds-visibility:focus-visible{outline:2px solid var(--accent,#5649b9);outline-offset:3px;}.ds-visibility:disabled{opacity:.6;cursor:wait}@media(prefers-reduced-motion:reduce){.ds-visibility{transition:none}}"
+    },
+    {
+      "name": "Panel compartido de acceso",
+      "kind": "custom",
+      "refersTo": "auth-layout",
+      "description": "Composición compartida por login, landing y registro informativo: marco uniforme de 32px, panel 60/40 y contenido de hasta 400px.",
+      "html": "<div class=\"ds-shell\"><div class=\"ds-layout\"><header class=\"ds-brand\">Mi Balance</header><section class=\"ds-content\"><h1 class=\"ds-title\">Bienvenido de nuevo</h1></section><div class=\"ds-scene-panel\"></div></div></div>",
+      "css": ".ds-shell{box-sizing:border-box;min-height:100svh;padding:32px;display:grid;place-items:center;background:var(--page,#f0f3fd);color:var(--ink,#252145)}.ds-layout{font-family:var(--font-family,'Nunito Sans',system-ui,sans-serif);width:100%;min-height:calc(100svh - 64px);display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);grid-template-rows:auto 1fr;background:white;box-shadow:0 12px 32px #292b3610}.ds-content{box-sizing:border-box;grid-column:1;min-width:0;width:min(100%,464px);justify-self:center;align-self:center;padding:32px}.ds-brand{box-sizing:border-box;grid-column:1;width:min(100%,464px);justify-self:center;padding:32px 32px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:var(--font-display,'Libre Baskerville',Georgia,serif);font-style:italic;font-weight:400;font-size:20px}.ds-title{margin:0 0 12px;font-family:var(--font-display,'Libre Baskerville',Georgia,serif);font-style:italic;font-size:clamp(28px,2.5vw,40px);font-weight:400;line-height:1.25;text-wrap:balance;overflow-wrap:anywhere}.ds-scene-panel{grid-column:2;grid-row:1/3;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:40px 24px;background:color-mix(in srgb,var(--ink,#252145) 5%,white)}@media(max-width:900px) and (min-width:760px){.ds-brand{padding-left:36px}.ds-content{padding-left:36px;padding-right:36px}}@media(max-width:759px){.ds-shell{padding:16px;align-items:start}.ds-layout{min-height:calc(100svh - 32px);grid-template-columns:1fr;grid-template-rows:auto auto 1fr}.ds-brand{grid-row:1;padding:24px 28px 16px;font-size:18px}.ds-scene-panel{grid-column:1;grid-row:2;padding:0;height:124px}.ds-content{grid-row:3;padding:24px 28px}.ds-title{font-size:26px}}@media(max-width:359px){.ds-shell{padding:12px}.ds-layout{min-height:calc(100svh - 24px)}.ds-content{padding-left:20px;padding-right:20px}.ds-brand{padding-left:20px}}"
+    },
+    {
+      "name": "Mensaje de error",
+      "kind": "custom",
+      "refersTo": "feedback-error",
+      "description": "Error explícito con semántica de alerta.",
+      "html": "<p class=\"ds-error\" role=\"alert\">Las contraseñas no coinciden.</p>",
+      "css": ".ds-error{font-family:var(--font-family,'Nunito Sans',system-ui,sans-serif);border-radius:8px;padding:12px;margin:20px 0 0;font-size:14px;line-height:1.6;color:var(--color-error,#932f3d);background:var(--color-error-surface,#fff0f2)}"
+    },
+    {
+      "name": "Mensaje de éxito",
+      "kind": "custom",
+      "refersTo": "feedback-success",
+      "description": "Confirmación explícita con semántica de estado.",
+      "html": "<p class=\"ds-success\" role=\"status\">Contraseña actualizada. Inicia sesión con tu nueva contraseña.</p>",
+      "css": ".ds-success{font-family:var(--font-family,'Nunito Sans',system-ui,sans-serif);border-radius:8px;padding:12px;margin:20px 0 0;font-size:14px;line-height:1.6;color:var(--color-success,#235a43);background:var(--color-success-surface,#eef7f0)}"
+    },
+    {
+      "name": "Escena de equilibrio",
+      "kind": "custom",
+      "description": "Escultura SVG decorativa: balanceo de cuatro segundos, pulso posterior de detalles de 900ms y reposo; sin datos del formulario.",
+      "html": "<svg\n      class=\"ds-balance-scene\"\n      viewBox=\"0 0 420 360\"\n      aria-hidden=\"true\"\n      focusable=\"false\"\n    >\n      <g class=\"ds-balance-details\" fill=\"var(--accent,#5649b9)\">\n        <circle cx=\"73\" cy=\"113\" r=\"3\" />\n        <circle cx=\"102\" cy=\"92\" r=\"2\" />\n        <circle cx=\"169\" cy=\"68\" r=\"3\" />\n        <circle cx=\"297\" cy=\"88\" r=\"2.5\" />\n        <circle cx=\"338\" cy=\"116\" r=\"3\" />\n        <circle cx=\"366\" cy=\"149\" r=\"2\" />\n        <circle cx=\"45\" cy=\"197\" r=\"2.5\" />\n        <circle cx=\"362\" cy=\"272\" r=\"3\" />\n        <path d=\"m231 91 5-5 5 5-5 5Z\" />\n        <path d=\"m62 272 4-4 4 4-4 4Z\" />\n        <path\n          d=\"M325 58v10m-5-5h10\"\n          fill=\"none\"\n          stroke=\"var(--accent,#5649b9)\"\n          stroke-width=\"1.5\"\n          stroke-linecap=\"round\"\n        />\n      </g>\n      <ellipse\n        cx=\"210\"\n        cy=\"314\"\n        rx=\"146\"\n        ry=\"9\"\n        fill=\"var(--accent,#5649b9)\"\n        opacity=\".08\"\n      />\n      <path d=\"M155 300a55 55 0 0 1 110 0Z\" fill=\"var(--accent,#5649b9)\" />\n      <g class=\"ds-balance-beam\">\n        <circle cx=\"118\" cy=\"187\" r=\"38\" fill=\"var(--accent-soft,#afb8f2)\" />\n        <path d=\"M259 225v-30a32 32 0 0 1 64 0v30Z\" fill=\"var(--ink,#252145)\" />\n        <rect\n          x=\"60\"\n          y=\"225\"\n          width=\"300\"\n          height=\"20\"\n          rx=\"10\"\n          fill=\"var(--illustration-paper,#fafaf7)\"\n        />\n        <path\n          d=\"M76 235h268\"\n          stroke=\"var(--accent,#5649b9)\"\n          stroke-width=\"1\"\n          opacity=\".2\"\n        />\n      </g>\n    </svg>",
+      "css": ".ds-balance-scene{width:min(100%,480px);height:auto;overflow:visible}.ds-balance-beam{transform-origin:210px 245px;animation:ds-balance-sway 4s cubic-bezier(0.16,1,0.3,1) both}.ds-balance-details{opacity:.22;transform-origin:210px 180px;animation:ds-balance-pulse 900ms cubic-bezier(0.16,1,0.3,1) 4s both}@keyframes ds-balance-pulse{0%,100%{opacity:.22;transform:scale(1)}45%{opacity:.5;transform:scale(1.035)}}@keyframes ds-balance-sway{0%{transform:rotate(-8deg)}40%{transform:rotate(4deg)}70%{transform:rotate(-2deg)}100%{transform:rotate(0)}}@media(max-width:759px){.ds-balance-scene{width:144px}}@media(prefers-reduced-motion:reduce){.ds-balance-beam,.ds-balance-details{animation:none}}"
+    },
+    {
+      "name": "Enlace principal",
+      "kind": "button",
+      "refersTo": "link-primary",
+      "description": "Navega al login desde landing y página informativa de invitaciones.",
+      "html": "<a class=\"ds-primary-link\" href=\"/\">Iniciar sesión</a>",
+      "css": ".ds-primary-link{box-sizing:border-box;font-family:var(--font-family,'Nunito Sans',system-ui,sans-serif);display:flex;align-items:center;justify-content:center;min-height:44px;padding:9px 18px;margin-top:24px;color:white;background:var(--accent,#5649b9);border-radius:var(--radius-control,10px);font-weight:700;text-decoration:none}.ds-primary-link:hover{background:var(--accent-hover,#463d96)}.ds-primary-link:focus-visible{outline:2px solid var(--accent,#5649b9);outline-offset:3px}"
+    },
+    {
+      "name": "Marca y navegación pública",
+      "kind": "nav",
+      "refersTo": "link-home",
+      "description": "Marca alineada con campos y regreso al inicio; ayuda del login centrada bajo una línea fina, con acceso informativo por invitación.",
+      "html": "<header class=\"ds-nav-brand\"><div class=\"ds-brand-name\"><svg viewBox=\"0 0 32 32\" fill=\"none\" aria-hidden=\"true\">\n          <rect x=\"3\" y=\"15\" width=\"7\" height=\"13\" rx=\"2\" fill=\"currentColor\" />\n          <rect x=\"13\" y=\"9\" width=\"7\" height=\"19\" rx=\"2\" fill=\"currentColor\" />\n          <rect x=\"23\" y=\"3\" width=\"7\" height=\"25\" rx=\"2\" fill=\"currentColor\" />\n        </svg><span>Mi Balance</span></div><a class=\"ds-home-link\" href=\"/inicio\"><svg viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\">\n            <path\n              d=\"m10 5-7 7 7 7M3 12h18\"\n              stroke=\"currentColor\"\n              stroke-width=\"1.8\"\n              stroke-linecap=\"round\"\n              stroke-linejoin=\"round\"\n            />\n          </svg>Volver al inicio</a></header><div class=\"ds-login-help\"><div class=\"ds-recovery\"><h2>¿Olvidaste tu contraseña?</h2><p>No te preocupes, <button type=\"button\" class=\"ds-recovery-action\">pulsa aquí para recuperarla</button>.</p></div><p class=\"ds-registration-link\">¿No tienes cuenta? <a class=\"ds-registration-anchor\" href=\"/registro\">Regístrate aquí</a></p><p class=\"ds-invitation-note\">El acceso es por invitación.</p></div>",
+      "css": ".ds-nav-brand{box-sizing:border-box;width:min(100%,464px);padding:32px 32px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--ink,#252145);font-family:var(--font-display,'Libre Baskerville',Georgia,serif);font-style:italic;font-weight:400;font-size:20px}.ds-nav-brand svg{width:26px;height:26px;color:var(--accent,#5649b9)}.ds-brand-name{display:flex;align-items:center;gap:10px}.ds-home-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--muted,#3d3877);font-family:var(--font-family,'Nunito Sans',system-ui,sans-serif);font-size:13px;font-style:normal;font-weight:700;text-decoration:none}.ds-home-link:hover{color:var(--accent,#5649b9);text-decoration:underline;text-underline-offset:3px}.ds-home-link svg{width:16px;height:16px}.ds-registration-link{margin:24px 0 4px;color:var(--muted,#3d3877);font-family:var(--font-family,'Nunito Sans',system-ui,sans-serif);font-size:14px;line-height:1.6}.ds-registration-anchor{color:var(--accent,#5649b9);font-weight:700;text-decoration:underline;text-underline-offset:3px;border-radius:2px}.ds-registration-anchor:hover{color:var(--accent-hover,#463d96)}.ds-invitation-note{margin:0;color:var(--muted,#3d3877);font-family:var(--font-family,'Nunito Sans',system-ui,sans-serif);font-size:13px;line-height:1.6}.ds-home-link:focus-visible,.ds-registration-anchor:focus-visible{outline:2px solid var(--accent,#5649b9);outline-offset:3px}@media(max-width:900px) and (min-width:760px){.ds-nav-brand{padding-left:36px}}@media(max-width:759px){.ds-nav-brand{padding:24px 28px 16px;font-size:18px}}@media(max-width:359px){.ds-nav-brand{padding-left:20px}}.ds-login-help{font-family:var(--font-family,'Nunito Sans',system-ui,sans-serif);color:var(--ink,#252145);border-top:1px solid var(--field-border,#afb8d7);padding-top:24px;text-align:center}.ds-recovery{padding-top:8px}.ds-recovery h2{margin:0 0 4px;font-size:14px;font-weight:700}.ds-recovery p{margin:0;color:var(--muted,#3d3877);font-size:14px;line-height:1.6}.ds-recovery-action{font:inherit;background:none;color:var(--accent,#5649b9);text-decoration:underline;text-underline-offset:3px;padding:0;min-height:auto;border:0;border-radius:2px;font-weight:700;cursor:pointer;transition:background 160ms ease}.ds-recovery-action:hover:not(:disabled){background:none;color:var(--accent-hover,#463d96)}.ds-recovery-action:focus-visible{outline:2px solid var(--accent,#5649b9);outline-offset:3px}.ds-recovery-action:disabled{opacity:.6;cursor:wait}@media(prefers-reduced-motion:reduce){.ds-recovery-action{transition:none}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Una bienvenida cercana",
+    "overview": "Un espacio amigable, cómodo, cercano e intuitivo. Los fondos suaves, la serif cursiva de los títulos y los campos claros acompañan tareas concretas sin competir con ellas. El blanco contiene el formulario y la tinta oscura mantiene su legibilidad.\n\nLa escultura geométrica original SVG expresa equilibrio abstracto. Su viga oscila una sola vez durante cuatro segundos; después, los pequeños detalles del fondo pulsan durante 900 ms y todo queda en reposo a los 4.9 segundos. Con movimiento reducido, toda la escena es estática desde el inicio. Es decorativa, no recibe datos del formulario y no reacciona a la visibilidad de las contraseñas. Este sistema registra el acceso y las páginas públicas mínimas existentes; no anticipa el diseño de un dashboard.",
+    "keyCharacteristics": [
+      "Tres ambientes suaves con funciones cromáticas equivalentes.",
+      "Libre Baskerville Italic local en marca y títulos; Nunito Sans local en controles y textos funcionales.",
+      "Controles redondeados y foco visible.",
+      "Escultura abstracta con balanceo inicial, pulso breve de detalles y reposo posterior."
+    ],
+    "rules": [
+      {
+        "name": "The Stable Atmosphere Rule",
+        "body": "Elegir un ambiente al montar la aplicación y conservarlo al navegar entre acceso y recuperación. Una recarga puede repetir el mismo ambiente.",
+        "section": "colors"
+      },
+      {
+        "name": "The Visible Label Rule",
+        "body": "Mantener una etiqueta visible y asociada a cada campo; el placeholder no reemplaza su nombre.",
+        "section": "typography"
+      },
+      {
+        "name": "The Subtle Scene Surface Rule",
+        "body": "Conservar el formulario blanco y la escena sombreada con la tinta del tema al 5%; el ambiente de color ocupa el marco exterior.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** conservar los roles cromáticos al alternar violeta, durazno y aqua.",
+      "**Do** usar Libre Baskerville Italic local en marca y título, y Nunito Sans local en campos y textos funcionales.",
+      "**Do** mantener etiquetas visibles, foco destacado y mensajes explícitos.",
+      "**Do** respetar movimiento reducido en controles y escultura.",
+      "**Do** mantener la escena decorativa y separada del estado del formulario."
+    ],
+    "donts": [
+      "**Don't** cambiar el ambiente al pasar entre acceso y recuperación.",
+      "**Don't** añadir movimiento continuo después de la secuencia de balanceo y pulso de 4.9 segundos.",
+      "**Don't** entregar contraseñas ni estado de visibilidad a la escena.",
+      "**Don't** presentar dashboard, Google o registro por invitación como funciones disponibles."
+    ]
+  }
+}

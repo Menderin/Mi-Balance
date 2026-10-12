@@ -29,7 +29,7 @@ Mantener la aplicación portable: PostgreSQL estándar, contenedores ejecutables
 
 ## 3. Estado actual y primera entrega
 
-Actualmente existen la configuración de Neon, React, la API Fastify, migraciones, Dockerfiles, Docker Compose y CI. Todavía no existen autenticación, tablas de negocio ni despliegue automatizado.
+Actualmente existen la configuración de Neon, React, la API Fastify, Dockerfiles, Docker Compose y CI. El esquema de identidad y finanzas se define mediante migraciones versionadas y se explica en [DATABASE.md](DATABASE.md). El login y la recuperación local están implementados; registro por invitación, CRUD y despliegue siguen pendientes.
 
 El workflow `.github/workflows/ci.yml` ejecuta `npm ci` y `npm run check` en pushes a main, feat/** y feature/**, pull requests hacia `main` y ejecuciones manuales. El check `CI` valida formato, tipos, pruebas de salud y builds; construye las imágenes y ejecuta una prueba de integración con los tres contenedores. Comprueba comunicación por Nginx, migraciones repetibles, persistencia al recrear PostgreSQL y recuperación de readiness. No utiliza credenciales ni acceso a Neon. El lint inicial comprueba formato; se ampliará con reglas de análisis de código cuando sea necesario.
 
@@ -53,30 +53,76 @@ Entregar frontend mínimo, API y PostgreSQL local con Podman (Docker en CI); tod
 
 ## 4. Mi Balance v0.1 — Primer flujo de producto (pendiente)
 
+### Entrega de esquema — implementada y verificada localmente
+
+Migraciones `001_authentication.sql` y `002_finances.sql` aplicadas a PostgreSQL local, con repetición sin cambios. Better Auth 1.7.7 instalado y fijado para verificar su esquema, ahora con rutas de login y recuperación habilitadas. Las pruebas en base temporal comprueban campos requeridos por la biblioteca, relaciones entre cuentas, importes, fechas, devoluciones, papelera y concurrencia. La prueba smoke incluye esta suite y verifica persistencia y recuperación. Invitaciones, correo de producción y CRUD siguen pendientes; no se han aplicado migraciones a Neon.
+
 Flujo: registro por invitación → login → configuración de cuenta → dashboard → registrar ingreso o gasto → guardar en PostgreSQL → mostrar y actualizar saldo. La versión debe terminar accesible por Internet.
 
 ### Identidad y acceso
 
-- Permitir registro mediante código de invitación, correo y contraseña; inicio y cierre de sesión.
+- Permitir registro mediante enlace individual enviado por correo, nombre visible y contraseña; inicio y cierre de sesión. Invitación de un solo uso, revocable y válida siete días; el enlace confirma el control del correo obligatorio y único.
 - Permitir solicitar recuperación y establecer una contraseña nueva mediante enlace recibido por correo.
 - El backend debe impedir acceso a cuentas o movimientos de otro usuario, incluso si se manipulan identificadores.
 - No incluir Google, registro sin invitación ni interfaz administrativa de invitaciones en v0.1.
-- Antes de implementar este módulo, especificar proveedor de correo, emisión y caducidad de invitaciones, sesiones y tokens de recuperación. Son decisiones pendientes de este módulo, no funciones de M0.
+- Biblioteca: Better Auth autogestionado en Fastify. Sesiones simultáneas por dispositivo, máximo siete días sin renovación automática. Cambio o recuperación de contraseña revoca todas las sesiones anteriores. Recuperación de un solo uso, treinta minutos. Nombre y contraseña editables; correo fijo en v0.1. Integración de invitaciones y proveedor real de correo pendientes; detalles del esquema en [DATABASE.md](DATABASE.md).
+
+### Entrega de login — implementada y verificada localmente
+
+Pantalla adaptable con correo y contraseña, enlace «¿Olvidaste tu contraseña? No te preocupes, pulsa aquí para recuperarla», formulario de solicitud y formulario de nueva contraseña. Tras entrar se muestra el nombre y el correo propios, con cierre de sesión; dashboard y registro por invitación siguen pendientes. La creación de usuarios de prueba se limita al CLI interactivo del PostgreSQL local.
+
+Contrato habilitado:
+
+| Ruta                                    | Entrada / resultado                                                                                                |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `POST /api/auth/sign-in/email`          | Correo, contraseña y `rememberMe`; cookie HttpOnly de sesión; credenciales inválidas 401, correo sin verificar 403 |
+| `POST /api/auth/sign-out`               | Revoca la sesión actual y borra su cookie                                                                          |
+| `GET /api/me`                           | Nombre, correo e identificador del usuario autenticado; sin sesión 401; `Cache-Control: no-store`                  |
+| `POST /api/auth/request-password-reset` | Correo y `redirectTo` del mismo origen; respuesta genérica para correos conocidos y desconocidos                   |
+| `GET /api/auth/reset-password/:token`   | Valida el enlace y redirige a `/recuperar`; token inválido redirige con error                                      |
+| `POST /api/auth/reset-password`         | Token y `newPassword` de 8 a 128 caracteres; invalida todas las sesiones; enlace usado o vencido 400               |
+
+No exponer otras rutas de Better Auth, incluido registro público. Sesión absoluta de siete días sin renovación ni caché de cookies. Enlaces de recuperación de treinta minutos y un solo uso; solicitar otro invalida el anterior. Serializar solicitudes por correo para conservar esa regla con concurrencia. No registrar URLs que contengan tokens. API valida origen; producción requiere HTTPS, secreto propio y proveedor de correo configurado.
+
+Para desarrollo, Mailpit se activa con el perfil Compose `mail`; captura los mensajes sin enviarlos fuera del equipo. No modifica los tres servicios principales ni configura servicios cloud. CI prueba autenticación en una base temporal y un remitente capturado en memoria. La prueba cubre rechazo de credenciales, correo verificado, origen, cookie, sesión persistida, cierre, recuperación, caducidad, uso único y revocación de sesiones.
+
+### Diseño del acceso — implementado y verificado localmente
+
+Los textos de recuperación y registro bajo el botón de login están centrados, incluida la aclaración de acceso por invitación. Una línea horizontal fina del color de borde del tema separa ese grupo del formulario, con espacio suficiente a ambos lados de la línea. No cambia navegación ni autenticación.
+
+Navegación de acceso: conservar el login en `/` y recuperación en `/recuperar`; crear una landing mínima en `/inicio`, con presentación fiel al estado del proyecto y enlaces a login y registro. En login, mostrar «¿No tienes cuenta? Regístrate aquí» debajo de recuperación y aclarar acceso por invitación. El enlace conduce a `/registro`, pantalla informativa que indica que el registro por invitación aún está en preparación, permite entrar si ya hay cuenta y volver a la landing. No crea usuarios, solicita datos ni expone nuevas rutas de autenticación. «Volver al inicio» es un enlace con flecha junto a la marca y lleva a `/inicio`; no depende del historial del navegador. Mantener un solo CTA principal por pantalla, teclado y foco visibles. Marco exterior uniforme: 32 px en escritorio, 16 px en móvil y 12 px bajo 360 px. Probar ambos enlaces y sus destinos reales, sin simular registro disponible.
+
+Refinamiento vigente según la referencia: marca e icono nuevamente sobre el formulario, alineados con sus campos. Formulario y dibujo comparten un panel blanco; el color del tema queda en el marco exterior (32 px en los cuatro lados en escritorio). El bloque derecho usa un fondo de 5% de la tinta del tema mezclada con blanco; solo cambia el fondo, nunca la opacidad del contenido. Puntos y pequeñas figuras SVG decorativas detrás de la escultura hacen un pulso de 900 ms al terminar el balanceo de cuatro segundos, y después permanecen quietos. La secuencia completa dura 4,9 segundos, una sola vez; con movimiento reducido, ambas partes quedan estáticas. Mantener 60/40, campos de hasta 400 px útiles y 44 px de alto, control del ojito de 44×44 px, sin frase ni footer. En móvil, márgenes exteriores de 16 px en los cuatro lados; bajo 360 px, 12 px. Conservar acceso a todos los controles y ausencia de scroll innecesario en los tamaños de escritorio acordados. Esta composición sustituye las pruebas previas de marca en la esquina y superficies a borde de página.
+
+En escritorio, 60% para el login y 40% para la escena. No añadir enlaces de páginas aún inexistentes. Se mantienen tipografía, paletas, animación y funciones de acceso.
+
+La altura responde al viewport real del navegador; a 1920×1080 y 1817×875, el login y la recuperación deben caber sin scroll de página. No ocultar contenido mediante `overflow: hidden` en el documento; pantallas pequeñas, zoom y mensajes extensos pueden requerir desplazamiento para conservar acceso a todos los controles. El formulario conserva una medida cómoda. Libre Baskerville Italic local en marca y títulos, con Nunito Sans en campos y textos funcionales. El usuario eligió reemplazar al personaje por equilibrio abstracto: una escultura geométrica vectorial con movimiento lento, estática con movimiento reducido; decorativa y sin acceso a los campos. No se incorpora un vídeo externo.
+
+Login, recuperación y bienvenida comparten formulario a la izquierda y escena de equilibrio SVG a la derecha; bajo 760 px la escena se reduce sobre el formulario. Fuentes locales con alternativas del sistema. Elegir violeta, durazno o aqua al montar la aplicación, mantener esa elección hasta recargar y permitir repeticiones.
+
+El control de cada contraseña cambia su visibilidad sin enviar el formulario ni borrar su valor; se oculta al cambiar de pantalla. La escena abstracta no reacciona a la contraseña ni recibe su contenido. SVG decorativo fuera de la lectura asistida. Mantener etiquetas, autocompletado, estados y navegación por teclado; no modificar contratos HTTP. Esta dirección sustituye el gesto anterior de cubrir los ojos.
+
+Aceptación: tres variantes con contraste suficiente, distribución estable, interacción correcta de los dos controles en recuperación, sin peticiones al pulsar el ojito, adaptación móvil sin desbordamiento y comprobaciones existentes sin regresiones. El contexto de producto y las reglas visuales se mantienen en `apps/web/PRODUCT.md`, `apps/web/DESIGN.md` y el brief de Impeccable.
+
+Verificación automatizada con Playwright en Chromium: visibilidad y preservación de campos, navegación y tema estable, controles independientes de recuperación, teclado sin envío accidental, carga y errores, bienvenida/cierre, contraste, fuente local, tres variantes, móvil y movimiento reducido. Estas pruebas simulan respuestas HTTP; la integración real de autenticación se comprueba con `test:smoke`. CI ejecuta ambas verificaciones.
 
 ### Cuenta principal y saldo
 
 Cada usuario configura una cuenta principal con nombre, saldo inicial en CLP y fecha de inicio. El saldo inicial representa dinero existente y no se contabiliza como ingreso. No admitir movimientos con fecha anterior al inicio de la cuenta.
 
-`Saldo actual = saldo inicial + ingresos registrados − gastos registrados`.
+`Saldo actual = saldo inicial + ingresos activos − gastos activos + devoluciones activas`.
+
+Nombre y saldo inicial son obligatorios; fecha actual precargada y editable. Antes de usar el dashboard se completa esta configuración. El saldo inicial se puede corregir sin afectar estadísticas; la fecha debe respetar todo el historial, incluida la papelera.
 
 El dashboard refleja movimientos realizados hasta la fecha actual; los compromisos futuros se incorporarán en versiones posteriores. Para v0.1 no admitir fechas futuras en ingresos o gastos. Los saldos negativos son válidos y se muestran sin ocultarlos.
 
 ### Movimientos
 
-- Tipos iniciales: ingreso y gasto. Monto entero positivo en CLP; el tipo determina el efecto sobre el saldo.
+- Tipos iniciales: ingreso, gasto y devolución vinculada. Monto entero positivo en CLP; el tipo determina el efecto sobre el saldo. Las devoluciones reducen el gasto neto del mes en que se reciben, sin contar como ingreso.
 - Campos de negocio: cuenta, tipo, monto, descripción del objeto o propósito, categoría y fecha. El servidor asigna identidad, propietario y fecha de creación.
 - Categorías predefinidas: Alimentación, Transporte, Hardware, Universidad, Entretenimiento, Servicios, Hogar, Salud, Ropa y Otros. Configuración de categorías queda para después.
 - Crear, listar, editar y eliminar movimientos propios. Confirmar eliminación en la interfaz.
+- Papelera recuperable sin borrado definitivo. Gasto y devoluciones activas se eliminan juntos; restaurar solo los integrantes de esa operación. No permitir restauración que exceda el monto original. Reglas completas, categorías de ingresos y restricciones de edición en [DATABASE.md](DATABASE.md).
 - Recalcular saldo y resumen al crear, editar o eliminar; mantener el resultado consistente en la API y en PostgreSQL.
 - Una operación fallida no debe mostrarse como guardada; permitir corregir entradas inválidas y reintentar.
 
